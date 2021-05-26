@@ -4,7 +4,6 @@ import photoCard from '../templates/photoCard.hbs';
 
 const debounce = require('lodash.debounce');
 
-
 let pageNumber = 1;
 
 const refs = {
@@ -17,8 +16,14 @@ refs.textInput.addEventListener('input', debounce(findImage, 1500));
 refs.btnLoader.addEventListener('click', nextPage);
 
 function findImage() {
-  refs.gallery.innerHTML = '';
-  query();
+  if (refs.textInput.value !== '') {
+    refs.gallery.innerHTML = '';
+    query();
+    refs.btnLoader.style.display = 'block';
+  } else {
+    refs.gallery.innerHTML = '';
+    refs.btnLoader.style.display = 'none';
+  }
 }
 function query() {
   fetchQuery(refs.textInput.value, pageNumber)

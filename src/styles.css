@@ -30,7 +30,7 @@ h1 {
 
 .btnLoader {
   margin: 0 auto;
-  display: block;
+  display: none;
   border-color: #3498db;
   border-radius: 0;
   color: #3498db;
