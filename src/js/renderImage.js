@@ -4,7 +4,6 @@ import photoCard from '../templates/photoCard.hbs';
 
 const debounce = require('lodash.debounce');
 
-const total = [];
 
 let pageNumber = 1;
 
@@ -28,7 +27,6 @@ function query() {
 }
 
 function renderImage(image) {
-  total.push(image.hits);
   refs.gallery.insertAdjacentHTML('beforeend', photoCard(image.hits));
   scrollpageBtn();
 }
