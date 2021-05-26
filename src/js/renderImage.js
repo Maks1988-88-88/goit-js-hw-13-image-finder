@@ -4,36 +4,43 @@ import photoCard from '../templates/photoCard.hbs';
 
 const debounce = require('lodash.debounce');
 
+const total = [];
+
+let pageNumber = 1;
+
 const refs = {
   gallery: document.querySelector('.gallery'),
-  textInput2: document.querySelector('[name="query"]'),
+  textInput: document.querySelector('[name="query"]'),
+  btnLoader: document.querySelector('.btnLoader'),
 };
 
-refs.textInput2.addEventListener('input', debounce(text, 500));
+refs.textInput.addEventListener('input', debounce(findImage, 1500));
+refs.btnLoader.addEventListener('click', nextPage);
 
-async function text() {
-//   console.log(refs.textInput2.value);
-//   const text = fetchQuery(refs.textInput2.value);
-   fetchQuery.then(findImage).catch(console.error());
+function findImage() {
+  refs.gallery.innerHTML = '';
+  query();
 }
-// console.log(refs.gallery);
-// console.log(refs.textInput);
-
-
-async function findImage() {
-  try {
-    const image = await fetchQuery;
-    // console.log(image);
-    console.log('+',image.hits);
-    const render = await renderImage(image.hits);
-  } catch (err) {
-    console.log(err);
-  }
+function query() {
+  fetchQuery(refs.textInput.value, pageNumber)
+    .then(renderImage)
+    .catch(console.error());
 }
-fetchQuery.then(findImage).catch(console.error());
-// findImage();
 
-async function renderImage(image) {
-  const newImg = await image;
-  refs.gallery.insertAdjacentHTML('beforeend', photoCard(newImg));
+function renderImage(image) {
+  total.push(image.hits);
+  refs.gallery.insertAdjacentHTML('beforeend', photoCard(image.hits));
+  scrollpageBtn();
+}
+
+function nextPage() {
+  pageNumber += 1;
+  query();
+}
+
+function scrollpageBtn() {
+  refs.btnLoader.scrollIntoView({
+    behavior: 'smooth',
+    block: 'end',
+  });
 }

@@ -1,5 +1,5 @@
 import './styles.css';
 
 
-import './js/apiService2';
-import './js/renderImage2';
+import './js/apiService';
+import './js/renderImage';
