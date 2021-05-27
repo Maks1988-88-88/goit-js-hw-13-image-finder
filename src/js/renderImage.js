@@ -22,15 +22,18 @@ function defaultSubmit(evt) {
 }
 function findImage() {
   if (refs.textInput.value !== '') {
+    pageNumber = 1
     refs.gallery.innerHTML = '';
     query();
     refs.btnLoader.style.display = 'block';
   } else {
+    pageNumber = 1;
     refs.gallery.innerHTML = '';
     refs.btnLoader.style.display = 'none';
   }
 }
 function query() {
+  console.log('pageNumber', pageNumber);
   fetchQuery(refs.textInput.value, pageNumber)
     .then(renderImage)
     .catch(console.error());
