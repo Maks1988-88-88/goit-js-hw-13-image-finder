@@ -10,14 +10,16 @@ const refs = {
   gallery: document.querySelector('.gallery'),
   textInput: document.querySelector('[name="query"]'),
   btnLoader: document.querySelector('.btnLoader'),
-
+  submiter: document.querySelector('#search-form'),
 };
-
-
 
 refs.textInput.addEventListener('input', debounce(findImage, 500));
 refs.btnLoader.addEventListener('click', nextPage);
+refs.submiter.addEventListener('submit', defaultSubmit);
 
+function defaultSubmit(evt) {
+  evt.preventDefault();
+}
 function findImage() {
   if (refs.textInput.value !== '') {
     refs.gallery.innerHTML = '';
