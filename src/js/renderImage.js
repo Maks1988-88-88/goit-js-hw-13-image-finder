@@ -33,7 +33,7 @@ function findImage() {
   }
 }
 function query() {
-  console.log('pageNumber', pageNumber);
+  // console.log('pageNumber', pageNumber);
   fetchQuery(refs.textInput.value, pageNumber)
     .then(renderImage)
     .catch(console.error());
