@@ -10,9 +10,12 @@ const refs = {
   gallery: document.querySelector('.gallery'),
   textInput: document.querySelector('[name="query"]'),
   btnLoader: document.querySelector('.btnLoader'),
+
 };
 
-refs.textInput.addEventListener('input', debounce(findImage, 1500));
+
+
+refs.textInput.addEventListener('input', debounce(findImage, 500));
 refs.btnLoader.addEventListener('click', nextPage);
 
 function findImage() {

@@ -23,10 +23,11 @@ h1 {
   color: #3498db;
 }
 
-.search-form {
-  text-align: center;
-}
 
+.searcher {
+  margin: 0 auto;
+  display: block;
+}
 
 .btnLoader {
   margin: 0 auto;
